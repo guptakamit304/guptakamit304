@@ -217,15 +217,91 @@
         .linkedin-badge-container {
             background: white;
             border-radius: var(--border-radius);
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: var(--box-shadow);
-            margin-top: 2rem;
-            text-align: center;
+            height: 100%;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
-        .linkedin-badge-container h3 {
-            margin-bottom: 1.5rem;
+        .linkedin-badge-container.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .linkedin-badge-container h4 {
             color: var(--dark-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .linkedin-profile-card {
+            text-align: center;
+            padding: 1rem 0;
+        }
+        
+        .linkedin-profile-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .linkedin-profile-title {
+            color: var(--primary-color);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+        
+        .linkedin-profile-company {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .linkedin-profile-company i {
+            margin-right: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .linkedin-badge-link {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            margin-top: 0.5rem;
+        }
+        
+        .linkedin-badge-link:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .linkedin-note {
+            font-size: 0.85rem;
+            color: var(--gray-color);
+            margin-top: 1rem;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        /* Professional Summary */
+        .professional-summary {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            height: 100%;
         }
         
         /* Footer */
@@ -271,6 +347,11 @@
             }
             
             .linkedin-badge-container {
+                margin-bottom: 2rem;
+                padding: 1.5rem;
+            }
+            
+            .professional-summary {
                 padding: 1.5rem;
             }
         }
@@ -496,32 +577,53 @@
                 </div>
             </div>
             
-            <!-- LinkedIn Badge Section -->
-            <div class="row mt-5">
-                <div class="col-lg-8 mx-auto">
-                    <div class="linkedin-badge-container">
-                        <h3 class="h4">Connect with me on LinkedIn</h3>
-                        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="backend-developer-amit" data-version="v1">
-                            <a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/backend-developer-amit?trk=profile-badge">Amit Kumar Gupta</a>
+            <!-- LinkedIn Badge & Professional Summary Section -->
+            <div class="row mt-5 align-items-stretch" id="linkedin-section">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <div class="linkedin-badge-container" id="linkedin-badge">
+                        <h4>Connect with me on LinkedIn</h4>
+                        
+                        <div class="linkedin-profile-card">
+                            <div class="linkedin-profile-name">Amit Kumar Gupta</div>
+                            <div class="linkedin-profile-title">
+                                Laravel Developer || PHP || Backend Developer || Freelancer || Laravel Instructor
+                            </div>
+                            <div class="linkedin-profile-company">
+                                <i class="fas fa-building"></i> NGMB Payments
+                            </div>
+                            
+                            <!-- Original LinkedIn Badge (Hidden by default, shown as fallback) -->
+                            <div class="d-none">
+                                <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="backend-developer-amit" data-version="v1">
+                                    <a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/backend-developer-amit?trk=profile-badge">Amit Kumar Gupta</a>
+                                </div>
+                            </div>
+                            
+                            <a href="https://in.linkedin.com/in/backend-developer-amit" target="_blank" class="linkedin-badge-link">
+                                <i class="fab fa-linkedin me-2"></i>View Profile
+                            </a>
+                            
+                            <p class="linkedin-note">Click to view my full LinkedIn profile</p>
                         </div>
-                        <p class="mt-3 small text-muted">Click the badge to view my full LinkedIn profile</p>
                     </div>
                 </div>
-            </div>
-            
-            <div class="row mt-5">
-                <div class="col-md-8 mx-auto">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <h3 class="h4 card-title mb-3 text-center">Professional Summary</h3>
-                            <p class="card-text text-center">
-                                As a dedicated software developer with expertise in Laravel and PHP, 
-                                I specialize in creating secure and scalable backend systems for fintech applications. 
-                                My experience includes building comprehensive KYC verification systems, 
-                                chargeback management platforms, and role-based authentication systems 
-                                that meet high security and compliance standards.
-                            </p>
-                        </div>
+                
+                <div class="col-lg-7">
+                    <div class="professional-summary">
+                        <h3 class="h4 card-title mb-3">Professional Summary</h3>
+                        <p class="card-text">
+                            As a dedicated software developer with expertise in Laravel and PHP, 
+                            I specialize in creating secure and scalable backend systems for fintech applications. 
+                            My experience includes building comprehensive KYC verification systems, 
+                            chargeback management platforms, and role-based authentication systems 
+                            that meet high security and compliance standards.
+                        </p>
+                        <p class="card-text mt-3">
+                            With a strong focus on fintech solutions, I have developed systems that handle
+                            sensitive financial data, implement robust security protocols, and ensure
+                            seamless integration with third-party services. My work emphasizes reliability,
+                            performance, and maintainability in production environments.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -597,6 +699,28 @@
             badge.style.animationDelay = `${index * 0.05}s`;
             observer.observe(badge);
         });
+        
+        // LinkedIn badge scroll animation
+        const linkedinSection = document.getElementById('linkedin-section');
+        const linkedinBadge = document.getElementById('linkedin-badge');
+        
+        const linkedinObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add a small delay for better visual effect
+                    setTimeout(() => {
+                        linkedinBadge.classList.add('show');
+                    }, 300);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        });
+        
+        if (linkedinSection) {
+            linkedinObserver.observe(linkedinSection);
+        }
         
         // LinkedIn badge initialization check
         document.addEventListener('DOMContentLoaded', function() {
